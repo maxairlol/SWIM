@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">BMI</string>
+    <string name="menu_about">About author</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="massKg">Mass[kg]:</string>
+    <string name="heightM">Height[m]:</string>
+    <string name="massLb">Mass[lb]:</string>
+    <string name="heightIn">Height[in]:</string>
+    <string name="switchSystem">English System</string>
+    <string name="bmi">BMI:</string>
+    <string name="author_name">Artem Zainier</string>
+    <string name="pcOfAuthor">Picture of author</string>
+    <string name="w">mass</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="onBackPressed">goBack</string>
+</resources>
