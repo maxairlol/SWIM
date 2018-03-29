@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String HEIGHT_TV = "heightTextKey";
     public static final String IS_CHECKED = "isCheckedKey";
     public static final String IS_DATA_SAVED = "isDataSaved";
+    public static final String CALCULATING_RESULT = "calculatingResult";
+    public static final String INVALID_DATA = "Invalid data!";
+    public static final String DATA_IS_SAVED = "Data has been saved";
+    public static final String ENTER_DATA = "Please, enter data!";
+
     EditText editMass,editHeight;
     TextView tvMass,tvHeight;
     Switch switchSystem;
@@ -32,27 +37,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        switchSystem = findViewById(R.id.switchSystem);
-        editMass = findViewById(R.id.editMass);
-        editHeight = findViewById(R.id.editHeight);
-        tvMass = findViewById(R.id.tvMass);
-        tvHeight = findViewById(R.id.tvHeight);
+        setViews();
+        setListeners();
 
         if(isDataSaved()) retrieveData();
         refreshData();
 
-        switchSystem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(!isChecked){
-                    tvMass.setText(R.string.massKg);
-                    tvHeight.setText(R.string.heightM);
-                } else{
-                    tvMass.setText(R.string.massLb);
-                    tvHeight.setText(R.string.heightIn);
-                }
-            }
-        });
     }
 
     @Override
@@ -76,6 +66,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void setViews(){
+        switchSystem = findViewById(R.id.switchSystem);
+        editMass = findViewById(R.id.editMass);
+        editHeight = findViewById(R.id.editHeight);
+        tvMass = findViewById(R.id.tvMass);
+        tvHeight = findViewById(R.id.tvHeight);
+    }
+
+     public void setListeners(){
+         switchSystem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+             @Override
+             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                 if(!isChecked){
+                     tvMass.setText(R.string.massKg);
+                     tvHeight.setText(R.string.heightM);
+                 } else{
+                     tvMass.setText(R.string.massLb);
+                     tvHeight.setText(R.string.heightIn);
+                 }
+             }
+         });
+     }
 
     //Save the users data info
     public void saveData(){
@@ -88,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean(IS_CHECKED,switchSystem.isChecked());
         editor.putBoolean(IS_DATA_SAVED,true);
         editor.apply();
-        showToast("Data has been saved");
+        showToast(DATA_IS_SAVED);
     }
 
     //Retrieve the users data info
@@ -136,10 +148,10 @@ public class MainActivity extends AppCompatActivity {
         String getMass = editMass.getText().toString();
         String getHeight = editHeight.getText().toString();
         if(getMass.isEmpty() || getHeight.isEmpty()) {
-            showToast("Please, enter data!");
+            showToast(ENTER_DATA);
         }
         else if (getMass.equals(".") || getHeight.equals(".")){
-            showToast("Invalid data!");
+            showToast(INVALID_DATA);
         } else{
             double mass = Double.parseDouble(getMass);
             double height = Double.parseDouble(getHeight);
@@ -151,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 result = bmi.calculateBMI();
                 Bundle bundle = new Bundle();
-                bundle.putDouble("calculatingResult",result);
+                bundle.putDouble(CALCULATING_RESULT,result);
                 openResultActivity(bundle);
             }catch (IllegalArgumentException e){
                 showToast(e.getMessage());

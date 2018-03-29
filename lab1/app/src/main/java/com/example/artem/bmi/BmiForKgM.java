@@ -5,6 +5,12 @@ package com.example.artem.bmi;
  */
 
 public class BmiForKgM extends BMI {
+    private static final int MIN_MASS = 20;
+    private static final int MAX_MASS = 300;
+    private static final int MIN_HEIGHT = 1;
+    private static final double MAX_HEIGHT = 2.50;
+    private static final String INVALID_DATA = "Invalid data!";
+
     public BmiForKgM(double mass, double height) {
         super(mass, height);
     }
@@ -24,12 +30,12 @@ public class BmiForKgM extends BMI {
         if(dataAreValid()){
             return getMass() / (getHeight()*getHeight());
         } else{
-            throw new IllegalArgumentException("Invalid data");
+            throw new IllegalArgumentException(INVALID_DATA);
         }
     }
 
     @Override
     boolean dataAreValid() {
-        return getMass() >= 20 && getMass() <= 300 && getHeight() >= 1 && getHeight() <= 2.50;
+        return getMass() >= MIN_MASS && getMass() <= MAX_MASS && getHeight() >= MIN_HEIGHT && getHeight() <= MAX_HEIGHT;
     }
 }

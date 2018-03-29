@@ -10,6 +10,12 @@ import android.view.View;
 import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
+    public static final int NORMAL_WEIGHT_MIN = 19;
+    public static final int NORMAL_WEIGHT_MAX = 25;
+    public static final int OVER_WEIGHT = 30;
+    public static final int OBESE_WEIGHT = 40;
+    public static final String CALCULATING_RESULT = "calculatingResult";
+
      TextView tvResult;
 
     @SuppressLint({"RestrictedApi", "DefaultLocale"})
@@ -19,10 +25,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
-        tvResult = findViewById(R.id.tvResult);
-        double result = getResult();
-        tvResult.setText(String.format("%.2f",result));
-        setBGColor(result);
+        setResult();
     }
 
     @Override
@@ -42,17 +45,29 @@ public class ResultActivity extends AppCompatActivity {
 
     public double getResult(){
         Bundle bundle = getIntent().getExtras();
-        return bundle != null ? bundle.getDouble("calculatingResult") : 0;
+        return bundle != null ? bundle.getDouble(CALCULATING_RESULT) : 0;
+    }
+
+    public void setResult(){
+        tvResult = findViewById(R.id.tvResult);
+        double result = getResult();
+        tvResult.setText(String.format("%.2f",result));
+        setBGColor(result);
     }
 
     public void setBGColor(double value){
         ConstraintLayout cl = findViewById(R.id.ConstraintLayout);
         int color;
-            if (value < 19) color = getResources().getColor(R.color.colorLightGreen);
-            else if (value >= 19 && value < 25) color = getResources().getColor(R.color.colorGreen);
-            else if (value >= 25 && value < 30) color = getResources().getColor(R.color.colorYellow);
-            else if (value >= 30 && value < 40) color = getResources().getColor(R.color.colorOrange);
-            else color = getResources().getColor(R.color.colorRed);
-            cl.setBackgroundColor(color);
+        if (value < NORMAL_WEIGHT_MIN)
+            color = getResources().getColor(R.color.colorLightGreen);
+        else if (value >= NORMAL_WEIGHT_MIN && value < NORMAL_WEIGHT_MAX)
+            color = getResources().getColor(R.color.colorGreen);
+        else if (value >= NORMAL_WEIGHT_MAX && value < OVER_WEIGHT)
+            color = getResources().getColor(R.color.colorYellow);
+        else if (value >= OVER_WEIGHT && value < OBESE_WEIGHT)
+            color = getResources().getColor(R.color.colorOrange);
+        else color = getResources().getColor(R.color.colorRed);
+        cl.setBackgroundColor(color);
         }
+
     }
