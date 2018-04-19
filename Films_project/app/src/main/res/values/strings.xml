@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Films</string>
+    <string name="film_category">Category of film</string>
+    <string name="film_image">Image of film</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="userDate">Actor\'s old</string>
+    <string name="userIcon">Actor\'s image</string>
+    <string name="separate_line">separate fragments</string>
+</resources>
