@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Music_player</string>
+    <string name="remote_back">remote_back</string>
+    <string name="remote_forward">remote_forward</string>
+    <string name="play_stop">play_stop</string>
+    <string name="play_btn">play_song</string>
+</resources>
