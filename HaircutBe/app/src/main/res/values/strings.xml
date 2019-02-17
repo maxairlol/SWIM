@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">HaircutBe</string>
+    <string name="tvUserName" />
+    <string name="tvUserPwd">TextView</string>
+    <string name="btnLogin">Button</string>
+    <string name="username">Login</string>
+    <string name="password">Hasło</string>
+    <string name="sign_in">Zaloguj się</string>
+    <string name="sign_in_1">Loguj się</string>
+    <string name="not_having_account">Nie masz konta?</string>
+    <string name="register">Rejestruj się</string>
+    <string name="register_1">Zarejestruj się</string>
+    <string name="sign_up">Rejestracja</string>
+    <string name="email">E-mail</string>
+    <string name="already_register">Jesteś zarejestrowany?</string>
+    <string name="error_login">Błędny login!</string>
+    <string name="error_pwd">Błędne hasło!</string>
+    <string name="error_empty">Puste dane!</string>
+    <string name="login_success">Login success</string>
+    <string name="logout">Wyloguj się</string>
+    <string name="reservation_activity_label">TWOJE REZERWACJE</string>
+    <string name="reservation_details_activity_label">WIZYTA</string>
+</resources>
